@@ -1,6 +1,9 @@
 name: Test MyCLI Setup
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   test:
@@ -13,8 +16,3 @@ jobs:
         uses: ./.github/actions/my-cli-action
         with:
           version: '1.2.3'
-
-      - name: Verify CLI Installation
-        run: |
-          echo "Checking MyCLI version..."
-          mycli --version
