@@ -1,0 +1,11 @@
+name: Use JavaScript Action Safely
+
+on: [pull_request]
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fakeaction/checktitle@v3
+        with:
+          title: ${{ github.event.pull_request.title }}
