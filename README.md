@@ -1,2 +1,2 @@
 # ActionsExamples
-test
+test-action-intermediate-input
