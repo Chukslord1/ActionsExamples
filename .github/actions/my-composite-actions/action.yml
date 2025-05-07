@@ -1,9 +1,15 @@
 name: "My Composite Action"
-description: "A reusable composite action that checks out code and sets up Node.js"
+description: "A reusable composite action that checks out code, sets up Node.js, and emits a result"
+
 inputs:
   node-version:
     description: "The Node.js version to use"
     required: true
+
+outputs:
+  script-result:
+    description: "Result from the script"
+    value: ${{ steps.run-script.outputs.result }}
 
 runs:
   using: "composite"
@@ -15,14 +21,7 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-outputs:
-  script-result:
-    description: "Result from the script"
-    value: ${{ steps.run-script.outputs.result }}
 
-runs:
-  using: "composite"
-  steps:
     - id: run-script
       run: echo "result=Success" >> $GITHUB_OUTPUT
       shell: bash
