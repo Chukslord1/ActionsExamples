@@ -1,4 +1,4 @@
-name: Use JavaScript Action Safely
+name: Check PR Title Securely
 
 on: [pull_request]
 
@@ -6,6 +6,11 @@ jobs:
   check-title:
     runs-on: ubuntu-latest
     steps:
-      - uses: fakeaction/checktitle@v3
+      - name: Check PR title securely
+        uses: actions/github-script@v6
         with:
-          title: ${{ github.event.pull_request.title }}
+          script: |
+            const title = '${{ github.event.pull_request.title }}';
+            if (!title.startsWith('octocat')) {
+              core.setFailed("PR title must start with 'octocat'");
+            }
