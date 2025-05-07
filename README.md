@@ -1,2 +1,2 @@
 # ActionsExamples
-test
+test-real-action
